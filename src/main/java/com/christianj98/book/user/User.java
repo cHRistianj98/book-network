@@ -53,10 +53,12 @@ public class User implements UserDetails, Principal {
     private List<Role> roles;
 
     @CreatedDate
-    @Column(nullable = false, updatable = false)
+    @Column(//nullable = false,
+            updatable = false)
     private LocalDateTime createdDate;
     @LastModifiedDate
-    @Column(nullable = false, insertable = false)
+    @Column(//nullable = false,
+            insertable = false)
     private LocalDateTime lastModifiedDate;
 
     @Override
