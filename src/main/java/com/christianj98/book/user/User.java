@@ -1,5 +1,7 @@
 package com.christianj98.book.user;
 
+import com.christianj98.book.book.Book;
+import com.christianj98.book.history.BookTransactionHistory;
 import com.christianj98.book.role.Role;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -8,6 +10,7 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -51,6 +54,12 @@ public class User implements UserDetails, Principal {
 
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Role> roles;
+
+    @OneToMany(mappedBy = "owner")
+    private List<Book> books;
+
+    @OneToMany(mappedBy = "user")
+    private List<BookTransactionHistory> histories;
 
     @CreatedDate
     @Column(//nullable = false,

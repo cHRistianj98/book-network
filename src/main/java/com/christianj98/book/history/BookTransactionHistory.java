@@ -1,7 +1,8 @@
-package com.christianj98.book.feedback;
+package com.christianj98.book.history;
 
 import com.christianj98.book.book.Book;
 import com.christianj98.book.common.BaseEntity;
+import com.christianj98.book.user.User;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -17,12 +18,15 @@ import lombok.experimental.SuperBuilder;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Feedback extends BaseEntity {
+public class BookTransactionHistory extends BaseEntity {
 
-    private Double note;
-    private String comment;
-
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
     @ManyToOne
     @JoinColumn(name = "book_id")
     private Book book;
+
+    private boolean returned;
+    private boolean returnApproved;
 }
